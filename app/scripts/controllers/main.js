@@ -9,11 +9,5 @@
  */
 angular.module('intervalTimerApp')
   .controller('MainCtrl', function ($scope) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
-    $scope.todos = ['one', 'two'];
+    $scope.test = "This be a test";
   });
