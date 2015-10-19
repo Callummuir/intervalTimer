@@ -2,18 +2,16 @@
 
 /**
  * @ngdoc function
- * @name intervalTimerApp.controller:MainCtrl
+ * @name intervalTimerApp.controller:AboutCtrl
  * @description
- * # MainCtrl
+ * # AboutCtrl
  * Controller of the intervalTimerApp
  */
 angular.module('intervalTimerApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-
-    $scope.todos = ['one', 'two'];
   });
