@@ -8,10 +8,6 @@
  * Controller of the intervalTimerApp
  */
 angular.module('intervalTimerApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AboutCtrl', function ($scope) {
+    $scope.test = "this is an about page test";
   });
