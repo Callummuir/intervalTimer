@@ -1,2 +1,10 @@
 
-{{test}}
+
+<form> 
+  Time: <input ng-model="timee" type="number"> </input>
+  Interval: <input ng-model="interval" type="number"> </input>
+  Rounds: <input ng-model="round" type="number"> </input>
+</form>
+
+
+total = {{total(timee, interval, round)}}

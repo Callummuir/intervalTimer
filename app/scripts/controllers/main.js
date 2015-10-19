@@ -9,5 +9,16 @@
  */
 angular.module('intervalTimerApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.test = "This be a test";
+    
+
+  	$scope.timee = 0;
+  	$scope.interval = 0;
+  	$scope.round = 1;
+
+  	$scope.total = function(time, interval, round){
+  		var total = (time + interval) * round;
+  		return total;
+  	};
+
+
   });
