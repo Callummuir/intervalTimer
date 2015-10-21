@@ -1,9 +1,9 @@
 
 
 <form> 
-  Time: <input ng-model="timee" type="number"> </input>
-  Interval: <input ng-model="interval" type="number"> </input>
-  Rounds: <input ng-model="round" type="number"> </input>
+  Time: <input ng-model="roundTime" type="number"> </input>
+  Interval: <input ng-model="intervalTime" type="number"> </input>
+  Rounds: <input ng-model="roundNumber" type="number"> </input>
 </form>
 
 <button ng-click="startCountdown()">
@@ -11,4 +11,4 @@ press
 </button>
 
 
-total = {{total(timee, interval, round)}}
+total = {{total()}}
