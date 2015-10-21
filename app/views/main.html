@@ -13,9 +13,28 @@
 </form>
 
 
-<button ng-click="startButtonPress()">
+<button ng-click="startButtonPress()" ng-show="showStartButton">
 Start
 </button>
 
+<button ng-click="pauseButtonPress()" ng-show="showPauseButton">
+Pause
+</button>
+<button ng-click="restartButtonPress()" ng-show="showRestartButton">
+Restart
+</button>
+
+<button ng-click="stopButtonPress()" ng-show="showStopButton">
+Stop
+</button>
+
+<button ng-click="resetButtonPress()" ng-show="showResetButton">
+Reset
+</button>
+
+
+
+
+<br/>
 
 total = {{total()}}

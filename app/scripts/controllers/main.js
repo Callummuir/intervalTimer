@@ -23,6 +23,13 @@ angular.module('intervalTimerApp')
   	//timer
   	var countdownTimer;
 
+  	//Show/hide variable for buttons
+  	$scope.showStartButton = true;
+  	$scope.showResetButton = true;
+  	$scope.showPauseButton = false;
+  	$scope.showStopButton = false;
+  	$scope.showRestartButton = false;
+
 
   	//Calculates the total amount of time to display
   	$scope.total = function(){
@@ -33,35 +40,66 @@ angular.module('intervalTimerApp')
 
   	//Function when the start button is pressed
   	$scope.startButtonPress = function(){
-  		//Assign values to be counted down
+  		//Change Display
+  		$scope.showStartButton = false;
+  		$scope.showResetButton = false;
+  		$scope.showStopButton = true;
+  		$scope.showPauseButton = true;
+
+  		//Function
   		thisRoundTime = $scope.roundTime;
   		thisIntervalTime = $scope.intervalTime;
   		thisRoundNumber = $scope.roundNumber;
-
-  		//Change buttons and display
-
-
-  		//start (final)countdown
+  		timePassed = 0;
   		startCountDown();
   	};
 
   	//Function when the stop button is pressed
   	$scope.stopButtonPress = function(){
-  		//Change buttons and display
-  		
+  		//Change Display
+  		$scope.showStartButton = true;
+  		$scope.showResetButton = true;
+  		$scope.showStopButton = false;
+  		$scope.showPauseButton = false;
+
+  		//Function
+  		endCountDown();
+  		$scope.roundTime = 0;
+  		$scope.intervalTime = 0;
+  		$scope.roundNumber = 1;
+  		timePassed = 0;
   	};
 
   	//Function when the pause button is pressed
   	$scope.pauseButtonPress = function(){
-  		//Change buttons and display
+  		//Change Display
+  		$scope.showPauseButton = false;
+  		$scope.showRestartButton = true;
+
+  		//Function
+  		endCountDown();
   	};
 
-  	//Fucntion for reset button is pressed
+  	//Function for reset button is pressed
   	$scope.resetButtonPress = function(){
-  		//Reset values
+  		//Change Display
+
+
+  		//Functiom
   		$scope.roundTime = 0;
   		$scope.intervalTime = 0;
   		$scope.roundNumber = 1;
+  		timePassed = 0;
+  	};
+
+  	//function for restarting the countdown after a pause
+  	$scope.restartButtonPress = function(){
+  		//Change Display
+  		$scope.showPauseButton = true;
+  		$scope.showRestartButton = false;
+
+  		//Function
+  		startCountDown();
   	};
 
   	///////////// Count functions /////////////
