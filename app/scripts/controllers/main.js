@@ -19,7 +19,12 @@ angular.module('intervalTimerApp')
   	var thisIntervalTime = 0;
   	var thisRoundNumber = 1;
 
+  	//state of the timer
   	var start = false;
+
+  	//timer
+  	var countdownTimer;
+
 
   	//Calculates the total amount of time to display
   	$scope.total = function(){
@@ -44,7 +49,7 @@ angular.module('intervalTimerApp')
   		start = true;
 
   		//start (final)countdown
-  		countDown();
+  		startCountDown();
   	};
 
   	//Function when the stop button is pressed
@@ -68,14 +73,19 @@ angular.module('intervalTimerApp')
 
   	///////////// Count functions /////////////
 
-  	//Function for counting functionality
-  	var countDown = function(){
+  	//Function for starting counting functionality
+  	var startCountDown = function(){
+  		console.log("starting countdown");
+  		countdownTimer = setInterval(countDown, 1000);
+  	};
 
+  	var countDown = function(){
+  		console.log("one second");
   	};
 
   	//Function when the countdown is finished
   	var endCountDown = function(){
-
+			clearInterval(countDown);
   	};
 
   	//function for counting down the value of the time
