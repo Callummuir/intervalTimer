@@ -6,8 +6,15 @@
   Rounds: <input ng-model="roundNumber" type="number"/> 
 </form>
 
+<form> 
+  Time: {{getThisRoundTime()}}
+  Interval: {{getThisIntervalTime()}}
+  Rounds: {{getThisRoundNumber()}}
+</form>
+
+
 <button ng-click="startButtonPress()">
-press
+Start
 </button>
 
 

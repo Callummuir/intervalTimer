@@ -18,9 +18,7 @@ angular.module('intervalTimerApp')
   	var thisRoundTime = 0;
   	var thisIntervalTime = 0;
   	var thisRoundNumber = 1;
-
-  	//state of the timer
-  	var start = false;
+  	var timePassed = 0;
 
   	//timer
   	var countdownTimer;
@@ -28,12 +26,7 @@ angular.module('intervalTimerApp')
 
   	//Calculates the total amount of time to display
   	$scope.total = function(){
-  		//if we have started show to countdown time
-  		if(start){
-  			return (thisRoundTime + thisIntervalTime) * thisRoundNumber;
-  		}else{
-  			return ($scope.roundTime + $scope.intervalTime) * $scope.roundNumber;	
-  		}
+  	  return (($scope.roundTime + $scope.intervalTime) * $scope.roundNumber) - timePassed;	
   	};
 
 		///////////// Button functions /////////////  	
@@ -45,12 +38,8 @@ angular.module('intervalTimerApp')
   		thisIntervalTime = $scope.intervalTime;
   		thisRoundNumber = $scope.roundNumber;
 
-  		console.log("roundTime: " + thisRoundTime);
-  		console.log("intervalTimer: " + thisIntervalTime);
-  		console.log("roundNumber: " + thisRoundNumber);
-
   		//Change buttons and display
-  		start = true;
+
 
   		//start (final)countdown
   		startCountDown();
@@ -59,7 +48,7 @@ angular.module('intervalTimerApp')
   	//Function when the stop button is pressed
   	$scope.stopButtonPress = function(){
   		//Change buttons and display
-  		start = false;
+  		
   	};
 
   	//Function when the pause button is pressed
@@ -79,7 +68,6 @@ angular.module('intervalTimerApp')
 
   	//Function for starting counting functionality
   	var startCountDown = function(){
-  		console.log("starting countdown");
   		countdownTimer = setInterval(countDown, 1000);
   	};
 
@@ -99,39 +87,48 @@ angular.module('intervalTimerApp')
   		}else{
   			countDownTime();
   		}
-  		console.log("one second");
+  		$scope.$apply();
   	};
 
   	//Function when the countdown is finished
   	var endCountDown = function(){
 			clearInterval(countdownTimer);
-			console.log("ended Coundown");
   	};
 
   	//function for counting down the value of the time
   	//TODO add error checking on these three
   	var countDownTime = function(){
-  		console.log("roundTime: " + thisRoundTime);
   		thisRoundTime -= 1;
+  		timePassed += 1;
   	};
 
   	//Function for counting down the value of the interval
 		var countDownInterval = function(){
-			console.log("intervalTimer: " + thisIntervalTime);
   		thisIntervalTime -= 1;
+  		timePassed += 1;
   	};
 
   	// Fucntion for counting down the value of the round
 		var countDownRound = function(){
-			console.log("count round");
   		thisRoundNumber -= 1;
-  		thisRoundTime = $scope.roundTime;
+  		thisRoundTime = $scope.roundTime - 1;
   		thisIntervalTime = $scope.intervalTime;
+  		timePassed += 1;
   	};
 
 
+  	///////////// Misc Functions /////////////
 
+  	$scope.getThisRoundTime = function(){
+  		return thisRoundTime;
+  	};
 
+  	$scope.getThisIntervalTime = function(){
+  		return thisIntervalTime;
+  	};
 
+  	$scope.getThisRoundNumber = function(){
+  		return thisRoundNumber;
+  	};
 
   });
