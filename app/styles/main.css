@@ -9,6 +9,39 @@ body {
   padding: 0;
 }
 
+h1{
+  color: #F44336;
+  text-align: center;
+}
+
+img{
+  display: block;
+  margin: auto;
+  
+}
+
+
+.numbers{
+  padding-bottom: 40px;
+}
+
+.input-group{
+  
+}
+
+.titleBlock{
+  padding: 40px;
+}
+
+.control{
+  text-align: center;
+}
+
+.display{
+  text-align: center;
+  
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

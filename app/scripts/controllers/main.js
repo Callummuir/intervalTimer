@@ -36,6 +36,9 @@ angular.module('intervalTimerApp')
   	$scope.showStopButton = false;
   	$scope.showRestartButton = false;
 
+  	$scope.showDisplay = false;
+  	$scope.showInput = true;
+
 
   	//Calculates the total amount of time to display
   	$scope.total = function(){
@@ -52,6 +55,9 @@ angular.module('intervalTimerApp')
   		$scope.showStopButton = true;
   		$scope.showPauseButton = true;
 
+  		$scope.showDisplay = true;
+  		$scope.showInput = false;
+
   		//Function
   		thisRoundTime = $scope.roundTime;
   		thisIntervalTime = $scope.intervalTime;
@@ -67,6 +73,10 @@ angular.module('intervalTimerApp')
   		$scope.showResetButton = true;
   		$scope.showStopButton = false;
   		$scope.showPauseButton = false;
+  		$scope.showRestartButton = false;
+
+  		$scope.showDisplay = false;
+  		$scope.showInput = true;
 
   		//Function
   		endCountDown();

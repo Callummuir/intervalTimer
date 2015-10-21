@@ -1,41 +1,43 @@
+<div class="titleBlock">
+  <img src="images/intervalTimerLogo.png"/>
+  <h1> Interval Timer </h1>
+</div>
+
+<div class="numbers">
+  <div class="input-group" ng-show="showInput">
+    <span class="input-group-addon">Time</span>
+    <input type="number" step="1" min="0" ng-model="roundTime" class="form-control">
+
+    <span class="input-group-addon">Interval</span>
+    <input type="number" step="1" min="0" ng-model="intervalTime" class="form-control">
+    
+    <span class="input-group-addon">Rounds</span>
+    <input type="number" step="1" pattern="\d+" min="0" ng-model="roundNumber" class="form-control">
+
+  </div>
+
+  <div class="display" ng-show="showDisplay">
+    <h4>
+      Time: {{getThisRoundTime()}}
+      Interval: {{getThisIntervalTime()}}
+      Rounds: {{getThisRoundNumber()}}
+    </h4>
+
+  </div>
+</div>
 
 
-<form> 
-  Time: <input ng-model="roundTime" type="number"/> 
-  Interval: <input ng-model="intervalTime" type="number"/> 
-  Rounds: <input ng-model="roundNumber" type="number"/> 
-</form>
 
-<form> 
-  Time: {{getThisRoundTime()}}
-  Interval: {{getThisIntervalTime()}}
-  Rounds: {{getThisRoundNumber()}}
-</form>
-
-
-<button ng-click="startButtonPress()" ng-show="showStartButton">
-Start
-</button>
-
-<button ng-click="pauseButtonPress()" ng-show="showPauseButton">
-Pause
-</button>
-
-<button ng-click="restartButtonPress()" ng-show="showRestartButton">
-Restart
-</button>
-
-<button ng-click="stopButtonPress()" ng-show="showStopButton">
-Stop
-</button>
-
-<button ng-click="resetButtonPress()" ng-show="showResetButton">
-Reset
-</button>
-
+<div class="control">
+  <button class="btn btn-default btn-lg" type="submit" ng-click="startButtonPress()" ng-show="showStartButton">Start</button>
+  <button class="btn btn-default btn-lg" type="submit" ng-click="pauseButtonPress()" ng-show="showPauseButton">Pause</button>
+  <button class="btn btn-default btn-lg" type="submit" ng-click="restartButtonPress()" ng-show="showRestartButton">Restart</button>
+  <button class="btn btn-default btn-lg" type="submit" ng-click="stopButtonPress()" ng-show="showStopButton">Stop</button>
+  <button class="btn btn-default btn-lg" type="submit" ng-click="resetButtonPress()" ng-show="showResetButton">Reset</button>
+</div> 
 
 
 
 <br/>
 
-total = {{total()}}
+
