@@ -23,6 +23,12 @@ angular.module('intervalTimerApp')
   	//timer
   	var countdownTimer;
 
+  	//audio
+  	var endsoundTimer;
+  	var pointAudioPlayedInRound = false;
+  	var endAudio = new Audio('audio/endBeep.wav');
+  	var pointAudio = new Audio('audio/partBeep.wav');
+
   	//Show/hide variable for buttons
   	$scope.showStartButton = true;
   	$scope.showResetButton = true;
@@ -64,6 +70,7 @@ angular.module('intervalTimerApp')
 
   		//Function
   		endCountDown();
+  		stopEndAudio();
   		$scope.roundTime = 0;
   		$scope.intervalTime = 0;
   		$scope.roundNumber = 1;
@@ -78,6 +85,8 @@ angular.module('intervalTimerApp')
 
   		//Function
   		endCountDown();
+  		stopEndAudio();
+
   	};
 
   	//Function for reset button is pressed
@@ -112,9 +121,17 @@ angular.module('intervalTimerApp')
   	//the final countdown function 
   	var countDown = function(){
   		if(thisRoundTime === 0){
+  			if(!pointAudioPlayedInRound){
+  				pointAudioPlayedInRound = true;
+  				playPartAudio();
+  			}
   			if(thisIntervalTime === 0){
+  				if(pointAudioPlayedInRound){
+  					playPartAudio();
+  				}
   				//Time is indexed to 0, number of times counted indexed to 1
   				if(thisRoundNumber === 1){
+						endsoundTimer = setInterval(playEndAudio, 2000);
   					endCountDown();
   				}else{
   					countDownRound();
@@ -152,6 +169,19 @@ angular.module('intervalTimerApp')
   		thisRoundTime = $scope.roundTime - 1;
   		thisIntervalTime = $scope.intervalTime;
   		timePassed += 1;
+  		pointAudioPlayedInRound = false;
+  	};
+
+  	var playEndAudio = function(){
+			endAudio.play();
+  	};
+
+  	var stopEndAudio = function(){
+  		clearInterval(endsoundTimer);
+  	};
+
+  	var playPartAudio = function(){
+			pointAudio.play();
   	};
 
 
