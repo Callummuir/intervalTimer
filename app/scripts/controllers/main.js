@@ -14,48 +14,84 @@ angular.module('intervalTimerApp')
   	$scope.roundTime = 0;
   	$scope.intervalTime = 0;
   	$scope.roundNumber = 1;
-  	// These varibles are counted on
+  	// These varibles are counted down on
+  	var thisRoundTime = 0;
+  	var thisIntervalTime = 0;
+  	var thisRoundNumber = 1;
 
+  	var start = false;
 
+  	//Calculates the total amount of time to display
   	$scope.total = function(){
-  		return ($scope.roundTime + $scope.intervalTime) * $scope.roundNumber;
-  	};
-
-  	//Starts the (final)countdown 
-  	//TODO do the countdown better
-  	$scope.startCountdown = function(){
-  		if($scope.roundTime === 0){
-  			if($scope.intervalTime === 0){
-  				if($scope.roundNumber === 0){
-  					console.log("countdown over!");
-  					return;
-  				}else{
-  					countDownRound();
-  				}
-
-  			}else{
-  				countDownInterval();
-  			}
-
+  		//if we have started show to countdown time
+  		if(start){
+  			return (thisRoundTime + thisIntervalTime) * thisRoundNumber;
   		}else{
-  			countDownTime();
+  			return ($scope.roundTime + $scope.intervalTime) * $scope.roundNumber;	
   		}
+  	};
 
-  		$scope.startCountdown();
+		///////////// Button functions /////////////  	
+
+  	//Function when the start button is pressed
+  	$scope.startButtonPress = function(){
+  		//Assign values to be counted down
+  		thisRoundTime = $scope.roundTime;
+  		thisIntervalTime = $scope.intervalTime;
+  		thisRoundNumber = $scope.roundNumber;
+
+  		//Change buttons and display
+  		start = true;
+
+  		//start (final)countdown
+  		countDown();
+  	};
+
+  	//Function when the stop button is pressed
+  	$scope.stopButtonPress = function(){
+  		//Change buttons and display
+  		start = false;
+  	};
+
+  	//Function when the pause button is pressed
+  	$scope.pauseButtonPress = function(){
+  		//Change buttons and display
+  	};
+
+  	//Fucntion for reset button is pressed
+  	$scope.resetButtonPress = function(){
+  		//Reset values
+  		$scope.roundTime = 0;
+  		$scope.intervalTime = 0;
+  		$scope.roundNumber = 1;
+  	};
+
+  	///////////// Count functions /////////////
+
+  	//Function for counting functionality
+  	var countDown = function(){
 
   	};
 
+  	//Function when the countdown is finished
+  	var endCountDown = function(){
+
+  	};
+
+  	//function for counting down the value of the time
+  	//TODO add error checking on these three
   	var countDownTime = function(){
   		console.log("count time");
   		$scope.roundTime -= 1;
   	};
 
+  	//Function for counting down the value of the interval
 		var countDownInterval = function(){
-			console.log("count tinterval");
+			console.log("count interval");
   		$scope.intervalTime -= 1;
   	};
 
-
+  	// Fucntion for counting down the value of the round
 		var countDownRound = function(){
 			console.log("count round");
   		$scope.roundNumber -= 1;
