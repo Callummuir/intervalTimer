@@ -13,7 +13,7 @@ angular.module('intervalTimerApp')
   	// These variables store the start values
   	$scope.roundTime = 0;
   	$scope.intervalTime = 0;
-  	$scope.roundNumber = 1;
+  	$scope.roundNumber = 0;
   	// These varibles are counted down on
   	var thisRoundTime = 0;
   	var thisIntervalTime = 0;
@@ -62,8 +62,10 @@ angular.module('intervalTimerApp')
   		//Function
   		thisRoundTime = $scope.roundTime * 1000;
   		thisIntervalTime = $scope.intervalTime * 1000;
-  		thisRoundNumber = $scope.roundNumber;
+  		thisRoundNumber = Math.floor($scope.roundNumber);
   		timePassed = 0;
+
+  		
 
   		startCountDown();
   	};
@@ -220,6 +222,7 @@ angular.module('intervalTimerApp')
   	};
 
   	$scope.getThisRoundNumber = function(){
+  		// console.log(thisRoundNumber);
   		return thisRoundNumber;
   	};
 
