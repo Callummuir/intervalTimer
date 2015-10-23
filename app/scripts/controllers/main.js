@@ -20,11 +20,10 @@ angular.module('intervalTimerApp')
   	var thisRoundNumber = 1;
   	var timePassed = 0;
 
-  	//timer
-  	var countdownTimer;
+  	// stores to worker object
+  	var timeWorker = null;
 
   	//audio
-  	var endsoundTimer;
   	var pointAudioPlayedInRound = false;
   	var endAudio = new Audio('audio/endBeep.wav');
   	var pointAudio = new Audio('audio/partBeep.wav');
@@ -80,7 +79,6 @@ angular.module('intervalTimerApp')
 
   		//Function
   		endCountDown();
-  		stopEndAudio();
   		$scope.roundTime = 0;
   		$scope.intervalTime = 0;
   		$scope.roundNumber = 1;
@@ -95,7 +93,6 @@ angular.module('intervalTimerApp')
 
   		//Function
   		endCountDown();
-  		stopEndAudio();
 
   	};
 
@@ -125,7 +122,21 @@ angular.module('intervalTimerApp')
 
   	//Function for starting counting functionality
   	var startCountDown = function(){
-  		countdownTimer = setInterval(countDown, 1000);
+  		//if workers are supported
+  		if(typeof(Worker) !== "undefined"){
+  			// If we do not have a worker created already
+  			if(timeWorker === null){
+  				timeWorker = new Worker("scripts/timerWorker.js");
+  				console.log(timeWorker);
+  			}
+  			// timeWorker.timeWorkerStart();
+
+
+  			//TODO update the data held here
+
+  		}else{
+  			//TODO Error message
+  		}
   	};
 
   	//the final countdown function 
@@ -141,7 +152,8 @@ angular.module('intervalTimerApp')
   				}
   				//Time is indexed to 0, number of times counted indexed to 1
   				if(thisRoundNumber === 1){
-						endsoundTimer = setInterval(playEndAudio, 2000);
+  					//TODO
+						playEndAudio();
   					endCountDown();
   				}else{
   					countDownRound();
@@ -155,8 +167,15 @@ angular.module('intervalTimerApp')
   		$scope.$apply();
   	};
 
+  	//Ends the timer
+  	var endTimer = function(){
+  		timerWorker.terminate();
+  		timeWorker = null;
+  	};
+
   	//Function when the countdown is finished
   	var endCountDown = function(){
+  		//TODO
 			clearInterval(countdownTimer);
   	};
 
@@ -173,7 +192,7 @@ angular.module('intervalTimerApp')
   		timePassed += 1;
   	};
 
-  	// Fucntion for counting down the value of the round
+  	// Function for counting down the value of the round
 		var countDownRound = function(){
   		thisRoundNumber -= 1;
   		thisRoundTime = $scope.roundTime - 1;
@@ -182,12 +201,9 @@ angular.module('intervalTimerApp')
   		pointAudioPlayedInRound = false;
   	};
 
+  	//Play Audio functions
   	var playEndAudio = function(){
 			endAudio.play();
-  	};
-
-  	var stopEndAudio = function(){
-  		clearInterval(endsoundTimer);
   	};
 
   	var playPartAudio = function(){
